@@ -120,18 +120,3 @@ const mockSigned = true; // ou false
 * Podemos demonstrar o Firebase online na apresentação se necessário
 
 ---
-
-## 🗃️ Arquivos de configuração e estrutura
-
-* Projeto organizado em pastas semânticas (pages, contexts, components etc)
-* Firebase comentado em:
-
-  * `src/Firebase/index.ts`
-  * `src/contexts/auth.js`
-* Estrutura pronta para exportar `.json` com modelo de dados se solicitado
-
----
-
-## 📎 Link do projeto no GitHub
-
-🔗 [https://github.com/FernasPO/financas-app](https://github.com/FernasPO/financas-app)
