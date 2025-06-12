@@ -106,8 +106,6 @@ const mockSigned = true; // ou false
 * `mockSigned = false` → mostra as telas de login/cadastro
 * `mockSigned = true` → simula usuário logado, acessando as demais rotas diretamente
 
-Os dados das movimentações são simulados via `useEffect()` na tela **Home**, e organizados por data usando a biblioteca **date-fns**.
-
 ---
 
 ## 🔥 Tentativa de integração com Firebase
