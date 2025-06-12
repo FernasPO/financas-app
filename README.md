@@ -1,32 +1,59 @@
-# 💸 OfNances - App de Controle Financeiro
+# 🪙 **OfNances – App de Controle Financeiro**
 
 Aplicativo mobile desenvolvido em React Native com Expo para ajudar no controle de receitas e despesas diárias. Este projeto foi criado como parte da disciplina de **Programação para Dispositivos Móveis (UTFPR)**.
 
-## 📱 Funcionalidades
+[🔗 Repositório no GitHub](https://github.com/FernasPO/financas-app)
 
-- Login e Cadastro de usuários
-- Registro de receitas e despesas
-- Visualização de saldo, entradas e saídas do dia
-- Filtro por data via calendário
-- Navegação entre telas com menu lateral (drawer)
-- Interface adaptada com base em protótipo do Figma
+---
 
-## 🔧 Tecnologias utilizadas
+## ✅ Funcionalidades
 
-- React Native (com Expo)
-- Firebase (autenticação e banco de dados - opcional ou futura)
-- Styled-components
-- React Navigation
-- AsyncStorage
-- Date-fns
-- React Native Calendars
+* Login e Cadastro de usuários (mockado)
+* Registro de receitas e despesas
+* Visualização de saldo, entradas e saídas do dia
+* Filtro por data via calendário
+* Navegação entre telas com menu lateral (drawer)
+* Interface adaptada com base em protótipo do Figma
 
-## 🖥️ Protótipo
+---
 
-Você pode visualizar o layout base usado para o projeto neste link:  
-[Figma - OfNances](https://www.figma.com/design/C2wIBFKFYcQU99wy9EbAuF/OfNances)
+## 💻 Tecnologias utilizadas
 
-## 📂 Estrutura do projeto
+* React Native (com Expo)
+* Firebase (autenticação e banco de dados - comentado temporariamente)
+* Styled-components
+* React Navigation
+* AsyncStorage
+* Date-fns
+* React Native Calendars
+
+---
+
+## 🎨 Protótipo (Figma)
+
+Você pode visualizar o layout base usado para o projeto neste link:
+
+[🔗 Figma - OfNances](https://www.figma.com/design/C2wIBFKFYcQU99wy9EbAuF/OfNances)
+
+* Cores escolhidas:
+
+  * Verde: representa entradas (feedback positivo)
+  * Vermelho: representa saídas/despesas (alerta)
+  * Branco: visual limpo e moderno
+
+* Telas criadas:
+
+  * SignIn (Login)
+  * SignUp (Cadastro)
+  * Home (Dashboard com cards de saldo e histórico)
+  * Registrar (Entrada ou Despesa)
+  * Perfil
+  * Alterar Dados
+  * Filtro por data (Calendário)
+
+---
+
+## ⚙️ Estrutura do projeto
 
 ```
 src/
@@ -36,46 +63,78 @@ src/
 ├── pages/
 ├── routes/
 ├── services/
-└── styles/
+└── Firebase/ (comentado)
 ```
 
-## ▶️ Como rodar o projeto
+---
 
-1. Clone o repositório:
-   ```bash
-   git clone https://github.com/seu-usuario/ofnances-app.git
-   cd ofnances-app
-   ```
+## 🛠️ Dificuldades encontradas
 
-2. Instale as dependências:
-   ```bash
-   npm install
-   ```
+* Problemas de versão entre bibliotecas (react-native, expo, firebase)
+* Conflito de dependências e limitações com o Firebase no Expo Go
+* Expo Go não suporta bibliotecas nativas exigidas pelo Firebase
+* Erro de resolução de pacotes ao instalar Firebase e dependências relacionadas
+* Falta de tempo para migração para Expo Dev Client ou app nativo
+* Inicialmente tentado rodar no emulador Android, mas não funcionou (máquina com limitações)
 
-3. Inicie com Expo:
-   ```bash
-   npx expo start
-   ```
+---
 
-4. Abra no celular (via app Expo Go) ou emulador.
+## 🔄 Fluxo de uso (telas e lógica)
 
-> ⚠️ Certifique-se de que o Node.js e o Expo CLI estão instalados.
+* 🔐 Login e Cadastro com validações básicas (mockado)
+* 📊 Home com cards de saldo de receitas e despesas
+* 📅 Filtro de movimentações por data (funcional mesmo com dados mockados)
+* ➕ Registro de entradas e saídas
+* 👤 Perfil e edição de dados
 
-## 📌 Observações para teste
+As informações simulam uma base real com controle por data, somatório por tipo e listagem de movimentações.
 
-No arquivo `src/routes/index.js` você pode alternar o tipo de rota para teste:
+---
+
+## 🧪 Mock de dados e controle de login
+
+### Onde modificar:
 
 ```js
-// Para forçar entrada direto no app (sem login)
-return <AppRoutes />;
+// Arquivo:
+src/contexts/auth.js
 
-// Para exigir autenticação (produção)
-return signed ? <AppRoutes /> : <AuthRoutes />;
+// Linha para alternar o fluxo:
+const mockSigned = true; // ou false
 ```
 
-## 👨‍💻 Autor
+* `mockSigned = false` → mostra as telas de login/cadastro
+* `mockSigned = true` → simula usuário logado, acessando as demais rotas diretamente
 
-- Nome do aluno: **Fernando Pacheco Oliveira**
-- RA: **2152916**
-- Professor: **Marlon Marcon**
-- Disciplina: **Programação para Dispositivos Móveis - UTFPR 2025/1**
+Os dados das movimentações são simulados via `useEffect()` na tela **Home**, e organizados por data usando a biblioteca **date-fns**.
+
+---
+
+## 🔥 Tentativa de integração com Firebase
+
+* Projeto Firebase configurado (auth + firestore)
+* Contexto de autenticação (`auth.js`) e acesso ao banco (`Firebase/index.ts`) prontos
+* Códigos foram comentados devido aos seguintes problemas:
+
+  * Incompatibilidade do Expo Go com bibliotecas nativas do Firebase
+  * Tempo insuficiente para usar Expo Dev Client ou ejectar para app nativo
+* A lógica do Firebase está mantida para futuras ativações
+* Podemos demonstrar o Firebase online na apresentação se necessário
+
+---
+
+## 🗃️ Arquivos de configuração e estrutura
+
+* Projeto organizado em pastas semânticas (pages, contexts, components etc)
+* Firebase comentado em:
+
+  * `src/Firebase/index.ts`
+  * `src/contexts/auth.js`
+* Dados mockados controlados por `useEffect()` na tela **Home**, simulando CRUD por data
+* Estrutura pronta para exportar `.json` com modelo de dados se solicitado
+
+---
+
+## 📎 Link do projeto no GitHub
+
+🔗 [https://github.com/FernasPO/financas-app](https://github.com/FernasPO/financas-app)
