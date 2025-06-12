@@ -128,7 +128,6 @@ const mockSigned = true; // ou false
 
   * `src/Firebase/index.ts`
   * `src/contexts/auth.js`
-* Dados mockados controlados por `useEffect()` na tela **Home**, simulando CRUD por data
 * Estrutura pronta para exportar `.json` com modelo de dados se solicitado
 
 ---
