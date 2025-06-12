@@ -97,7 +97,7 @@ As informações simulam uma base real com controle por data, somatório por tip
 
 ```js
 // Arquivo:
-src/contexts/auth.js
+src/routes/index.js
 
 // Linha para alternar o fluxo:
 const mockSigned = true; // ou false
