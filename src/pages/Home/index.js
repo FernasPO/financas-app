@@ -19,6 +19,10 @@ import CalendarModal from '../../components/CalendarModal';
 
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
+// 🔥 Firebase imports (desativado temporariamente)
+// import { db, auth } from '../../Firebase';
+// import { collection, query, where, getDocs, deleteDoc, doc } from 'firebase/firestore';
+
 export default function Home() {
   const isFocused = useIsFocused();
   const [listBalance, setListBalance] = useState([]);
@@ -27,26 +31,40 @@ export default function Home() {
   const [dateMovements, setDateMovements] = useState(new Date());
 
   useEffect(() => {
-    // MOCKANDO dados locais para testes
-    const fakeBalance = [
-      { tag: 'Receita', saldo: 1500 },
-      { tag: 'Despesas', saldo: -450 },
-    ];
+    // 🔁 MOCK DE DADOS - usado no lugar do Firebase
+    const dataHoje = format(dateMovements, 'dd/MM/yyyy');
 
     const fakeReceives = [
-      { id: '1', label: 'Freelance React Native', value: 1200, date: '25/05/2025', type: 'Receita' },
-      { id: '2', label: 'Lanche', value: 25, date: '25/05/2025', type: 'Despesas' },
-      { id: '3', label: 'Conta de Luz', value: 100, date: '25/05/2025', type: 'Despesas' },
+      { id: '1', label: 'Freelance React Native', value: 1200, date: '10/06/2025', type: 'Receita' },
+      { id: '2', label: 'Lanche', value: 25, date: '10/06/2025', type: 'Despesas' },
+      { id: '3', label: 'Conta de Luz', value: 100, date: '11/06/2025', type: 'Despesas' },
+      { id: '4', label: 'Venda notebook', value: 3000, date: '11/06/2025', type: 'Receita' },
     ];
 
-    setListBalance(fakeBalance);
-    setMovements(fakeReceives);
+    const filtrados = fakeReceives.filter(item => item.date === dataHoje);
+
+    let entrada = 0;
+    let saida = 0;
+
+    filtrados.forEach(item => {
+      if (item.type === 'Receita') {
+        entrada += item.value;
+      } else if (item.type === 'Despesas') {
+        saida += item.value;
+      }
+    });
+
+    setMovements(filtrados);
+    setListBalance([
+      { tag: 'Receita', saldo: entrada },
+      { tag: 'Despesas', saldo: -saida }, // apenas visual
+    ]);
   }, [isFocused, dateMovements]);
 
-  
+  // 🔁 Desativado porque não há conexão com Firestore
   async function handleDelete(id) {
-    const novaLista = movements.filter(item => item.id !== id);
-    setMovements(novaLista);
+    // await deleteDoc(doc(db, 'transacoes', id));
+    setMovements(prev => prev.filter(item => item.id !== id));
   }
 
   function filterDateMovements(dateSelected) {
@@ -88,4 +106,4 @@ export default function Home() {
       </Modal>
     </Background>
   );
-} 
+}

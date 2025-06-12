@@ -1,16 +1,14 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { View, ActivityIndicator } from 'react-native';
-
-import { AuthContext } from '../contexts/auth';
 
 import AuthRoutes from './auth.routes';
 import AppRoutes from './app.routes';
 
-// Altere para true se quiser simular usuário logado
+// 🧪 Ative ou desative a simulação de login direto aqui
 const mockSigned = true;
 
-function Routes() {
-  const { signed, loading } = useContext(AuthContext);
+export default function Routes() {
+  const loading = false; // Desliga o loading nesse modo manual
 
   if (loading) {
     return (
@@ -19,8 +17,9 @@ function Routes() {
           flex: 1,
           justifyContent: 'center',
           alignItems: 'center',
-          backgroundColor: '#F0FEFF'
-        }}>
+          backgroundColor: '#F0FEFF',
+        }}
+      >
         <ActivityIndicator size="large" color="#2CC9AD" />
       </View>
     );
@@ -28,5 +27,3 @@ function Routes() {
 
   return mockSigned ? <AppRoutes /> : <AuthRoutes />;
 }
-
-export default Routes;
